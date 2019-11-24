@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ToDoListElement} from './api/ToDoListElement';
+import {TodoService} from '../services/todo.service';
+import {Observable} from 'rxjs';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-list-todo',
@@ -7,28 +10,29 @@ import {ToDoListElement} from './api/ToDoListElement';
   styleUrls: ['./list-todo.component.scss']
 })
 export class ListTodoComponent implements OnInit {
-  todoList: Array<ToDoListElement>;
+  todoList: Observable<Array<ToDoListElement>>;
+  message: string;
 
-  constructor() {
+  constructor(private todoService: TodoService,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.todoList = this.prepareToDoListData();
+    this.refreshToDos();
   }
 
-  private prepareToDoListData(): Array<ToDoListElement> {
-    const todoList = new Array<ToDoListElement>();
-    const elem = new ToDoListElement(1, 'First Element', false, new Date());
-    const elem2 = new ToDoListElement(2, 'Second Element', false, new Date());
-    const elem3 = new ToDoListElement(3, 'Third Element', false, new Date());
-    const elem4 = new ToDoListElement(4, 'Fourth Element', false, new Date());
-
-    todoList.push(elem);
-    todoList.push(elem2);
-    todoList.push(elem3);
-    todoList.push(elem4);
-
-    return todoList;
+  removeToDo(todo: ToDoListElement) {
+    this.todoService.removeById('macon', todo.id).subscribe(response => {
+      this.message = `Todo number ${todo.id} deleted`;
+      this.refreshToDos();
+    });
   }
 
+  private refreshToDos() {
+    this.todoList = this.todoService.getAllToDo('macon');
+  };
+
+  addNewToDo() {
+    this.router.navigate(['/todo/0']);
+  }
 }

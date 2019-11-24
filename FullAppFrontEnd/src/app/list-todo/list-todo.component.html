@@ -1,18 +1,33 @@
 <h2>ToDo List:</h2>
+
+<div class="alert alert-success text-center" *ngIf="message">{{message}}</div>
+
 <table class="table">
   <thead>
   <tr>
+    <th>Username</th>
     <th>Description</th>
     <th>Targer date</th>
     <th>is Completed?</th>
+    <th>Update</th>
+    <th>Delete</th>
   </tr>
   </thead>
   <tbody>
-<!--  4krotnie powieli element tr-->
-  <tr *ngFor="let todo of todoList">
+  <!--  4krotnie powieli element tr-->
+  <tr *ngFor="let todo of todoList | async">
+    <td>{{todo.username}}</td>
     <td>{{todo.description}}</td>
     <td>{{todo.targetDate | date:'medium'}}</td>
     <td>{{todo.done}}</td>
+    <td>
+      <button class="btn btn-warning btn-sm" [routerLink]="['/todo/' + todo.id]">Update</button>
+    </td>
+    <td>
+      <button class="btn btn-danger btn-sm" (click)="removeToDo(todo)">Delete</button>
+    </td>
   </tr>
   </tbody>
 </table>
+
+<button class="btn btn-block btn-success btn-sm" (click)="addNewToDo()">Add New</button>

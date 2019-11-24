@@ -20,7 +20,6 @@ export class HardcodedAuthenticationService {
 
   isUserLoggedIn() {
     const item = sessionStorage.getItem('macon-authenticatedUser');
-    console.log('item :: ' + (!!item));
     return !!item;
   }
 

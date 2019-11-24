@@ -2,3 +2,12 @@
 <div class="container">
   Hello {{loginx}} You can manage your todos list <a routerLink="/todos">Here!</a>
 </div>
+
+<div *ngIf="dashboard" class="alert alert-danger">
+  Message: {{dashboard.description}}
+</div>
+
+<div class="container">
+  Get a customized data
+  <button class="brn btn-success" (click)="getCustomizedData()">GET DATA</button>
+</div>

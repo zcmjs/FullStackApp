@@ -11,6 +11,8 @@ import { ListTodoComponent } from './list-todo/list-todo.component';
 import { HeaderComponent } from './dashboard/header/header.component';
 import { FooterComponent } from './dashboard/footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
+import {HttpClientModule} from '@angular/common/http';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,14 @@ import { LogoutComponent } from './logout/logout.component';
     ListTodoComponent,
     HeaderComponent,
     FooterComponent,
-    LogoutComponent
+    LogoutComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
