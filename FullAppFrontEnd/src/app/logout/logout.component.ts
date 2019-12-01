@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BasicAuthenticationService} from "../services/basic-authentication.service";
+import {HardcodedAuthenticationService} from '../services/hardcoded-authentication.service';
 
 @Component({
   selector: 'app-logout',
@@ -9,7 +9,7 @@ import {BasicAuthenticationService} from "../services/basic-authentication.servi
 export class LogoutComponent implements OnInit {
 
   //@TODO dlaczego wylogowaywanie nie moze byc w konstruktorze
-  constructor(private authenticate: BasicAuthenticationService) {
+  constructor(private authenticate: HardcodedAuthenticationService) {
 
   }
 
