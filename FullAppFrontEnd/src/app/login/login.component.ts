@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {HardcodedAuthenticationService} from './../services/hardcoded-authentication.service';
+import {BasicAuthenticationService} from "../services/basic-authentication.service";
 
 @Component({
   selector: 'app-login',
@@ -14,18 +14,20 @@ export class LoginComponent implements OnInit {
   invalidAuthorizationData = false;
 
   constructor(private router: Router,
-              private authenticationService: HardcodedAuthenticationService) {
+              private authenticationService: BasicAuthenticationService) {
   }
 
   ngOnInit() {
   }
 
   send() {
-
-    if (this.authenticationService.authenticate(this.username, this.password)) {
-      this.router.navigate(['dashboard', this.username]); //username to jest parameter  {path: 'dashboard/:name', component: DashboardComponent},
-    } else {
-      this.invalidAuthorizationData = true;
-    }
+    this.authenticationService.executeLoginUser(this.username, this.password).subscribe(result => {
+        this.router.navigate(['dashboard', this.username]); //username to jest parameter  {path: 'dashboard/:name', component: DashboardComponent},
+        this.invalidAuthorizationData = false;
+      },
+      error => {
+        console.log('cos poszlo nie tak');
+        this.invalidAuthorizationData = true;
+      });
   }
 }
