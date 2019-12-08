@@ -5,6 +5,7 @@
 <table class="table">
   <thead>
   <tr>
+    <th>Id</th>
     <th>Username</th>
     <th>Description</th>
     <th>Targer date</th>
@@ -16,6 +17,7 @@
   <tbody>
   <!--  4krotnie powieli element tr-->
   <tr *ngFor="let todo of todoList | async">
+    <td>{{todo.id}}</td>
     <td>{{todo.username}}</td>
     <td>{{todo.description}}</td>
     <td>{{todo.targetDate | date:'medium'}}</td>

@@ -12,23 +12,23 @@ export class TodoService {
   }
 
   getAllToDo(username: string): Observable<Array<ToDoListElement>> {
-    return this.http.get<Array<ToDoListElement>>(`http://localhost:8080/users/${username}/todos`);
+    return this.http.get<Array<ToDoListElement>>(`/api/users/${username}/todos`);
   }
 
   getById(username: string, id: number) {
-    return this.http.get<ToDoListElement>(`http://localhost:8080/users/${username}/todos/${id}`);
+    return this.http.get<ToDoListElement>(`/api/users/${username}/todos/${id}`);
   }
 
   removeById(username: string, id: number) {
-    return this.http.delete(`http://localhost:8080/users/${username}/todos/${id}`);
+    return this.http.delete(`/api/users/${username}/todos/${id}`);
   }
 
   update(username: string, id: number, todo: ToDoListElement) {
-    return this.http.put<ToDoListElement>(`http://localhost:8080/users/${username}/todos/${id}`, todo);
+    return this.http.put<ToDoListElement>(`/api/users/${username}/todos/${id}`, todo);
   }
 
   save(username: string, todo: ToDoListElement) {
-    return this.http.post<ToDoListElement>(`http://localhost:8080/users/${username}/todos/`, todo);
+    return this.http.post<ToDoListElement>(`/api/users/${username}/todos/`, todo);
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HardcodedAuthenticationService} from '../../services/hardcoded-authentication.service';
+import {BasicAuthenticationService} from '../../services/basic-authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ import {HardcodedAuthenticationService} from '../../services/hardcoded-authentic
 export class HeaderComponent implements OnInit {
   isUserLoggedIn = false;
 
-  constructor(private authenticate: HardcodedAuthenticationService) { }
+  constructor(private authenticate: BasicAuthenticationService) { }
 
   ngOnInit() {
     this.isUserLoggedIn = this.authenticate.isUserLoggedIn();

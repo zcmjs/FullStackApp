@@ -16,18 +16,9 @@ export class DashboardService {
   }
 
   getCustomizedDataWithParameter(name): Observable<DashBoardDto> {
-    return this.http.get<DashBoardDto>(`/api/dashboard/welcome/${name}`, {headers: this.getHeader()});
+    return this.http.get<DashBoardDto>(`/api/dashboard/welcome/${name}`);
   }
 
-  private getHeader() {
-    const username = "macon";
-    const password = "ssac";
-    const encodedUserData = btoa(`${username}:${password}`);
-    const bassicc = `Basic ${encodedUserData}`;
 
-    return new HttpHeaders({
-      'Authorization': bassicc
-    });
-  }
 
 }
